@@ -7,7 +7,7 @@ public class InfluxDBConnection {
 	private String password;    //密码
 	private String openUrl;     //连接地址
 	private String influxDbName;
-	private String retentionPolicy; // 默认为autogen
+	private String retentionPolicy; // 默认为autogen，保留策略
 	private InfluxDB influxDB;
 
 	public InfluxDBConnection(String userName, String password, String openUrl, String influxDbName,
