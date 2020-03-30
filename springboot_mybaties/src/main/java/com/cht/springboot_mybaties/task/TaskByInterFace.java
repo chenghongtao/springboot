@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author Administrator
  *
  */
-@Component
+//@Component
 public class TaskByInterFace implements SchedulingConfigurer {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(TaskByInterFace.class);

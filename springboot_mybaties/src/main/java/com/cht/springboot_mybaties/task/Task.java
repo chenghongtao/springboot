@@ -12,7 +12,7 @@ public class Task {
 	
 	private static int NUM=0;
 	
-	@Scheduled(fixedRate = 2000)
+	//@Scheduled(fixedRate = 2000)
     public void testTasks() {
 		
 		System.out.println("执行任务:"+(NUM++));
