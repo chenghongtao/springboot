@@ -33,8 +33,8 @@ public class QuartzConfig {
 	@Bean
 	JobDetailFactoryBean jobDetailFactoryBean() {
 		JobDetailFactoryBean bean=new JobDetailFactoryBean();
-		bean.setJobClass(MyJob.class);
-		JobDataMap map=new JobDataMap();
+		bean.setJobClass(MyJob.class);    //指定job的类名.class
+		JobDataMap map=new JobDataMap();  //存放参数
 		map.put("helloService",StaticMethodGetBean.getBean(HelloService.class));   //key必须和MyJob中的属性变量名称相同
 		bean.setJobDataMap(map);
 		return bean;
@@ -44,11 +44,11 @@ public class QuartzConfig {
 	@Bean
 	SimpleTriggerFactoryBean simpleTriggerFactoryBean() {
 		SimpleTriggerFactoryBean bean=new SimpleTriggerFactoryBean();
-		bean.setStartTime(new Date());
+		bean.setStartTime(new Date());   //设置开始时间
 		bean.setRepeatCount(-1);   //-1 表示无限次   重复执行次数
-		bean.setJobDetail(methodInvokingJobDetailFactoryBean().getObject());
-		bean.setRepeatInterval(3000);
-		return bean;
+		bean.setJobDetail(methodInvokingJobDetailFactoryBean().getObject());  //设置任务数据
+		bean.setRepeatInterval(3000);   //设置执行间隔为3s
+		return bean;  
 	}
 	
 	//触发器，类似于@Scheduler中的cron表达式的用法
@@ -64,6 +64,7 @@ public class QuartzConfig {
 	@Bean
 	SchedulerFactoryBean schedulerFactoryBean() {
 		SchedulerFactoryBean bean = new SchedulerFactoryBean();
+		//设置触发器
 		bean.setTriggers(cronTriggerFactoryBean().getObject(),simpleTriggerFactoryBean().getObject());
 		return bean;
 	}
