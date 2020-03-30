@@ -3,18 +3,13 @@ package com.cht.springboot_mybaties.task.quartz;
 import java.util.Date;
 
 import org.quartz.JobDataMap;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
-
-import com.cht.springboot_mybaties.Application;
 
 @Configuration
 public class QuartzConfig {
@@ -65,7 +60,7 @@ public class QuartzConfig {
 		return bean;
 	}
 	
-	//调度器
+	//定义一个调度器，并且将触发器设置到调度器中
 	@Bean
 	SchedulerFactoryBean schedulerFactoryBean() {
 		SchedulerFactoryBean bean = new SchedulerFactoryBean();
