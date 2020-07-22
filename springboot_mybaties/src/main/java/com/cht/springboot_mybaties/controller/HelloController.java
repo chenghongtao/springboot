@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cht.springboot_mybaties.config.WebSocketServer;
 import com.cht.springboot_mybaties.model.LibEntity;
 import com.cht.springboot_mybaties.model.Person;
 import com.cht.springboot_mybaties.service.BookService;
@@ -21,8 +24,12 @@ public class HelloController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private WebSocketServer server;
 
 	@RequestMapping("/say")
+	@Transactional
 	public String hello() {
 //		List<Book> books = bookService.getAllBooks();
 //		System.out.println(books);
@@ -46,5 +53,10 @@ public class HelloController {
 		map.put("one", 1);
 		result.setExt(map);
 		return result;
+	}
+	
+	@GetMapping("/socket")
+	public void socket() {
+		bookService.socket();
 	}
 }

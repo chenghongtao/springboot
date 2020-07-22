@@ -2,14 +2,11 @@ server:
   port: 8004
 
 spring:
-    profiles:
-      active: test
-      
-    datasource:
+  datasource:
         name: test
-        url: jdbc:mysql://127.0.0.1:3306/springboot
+        url: jdbc:mysql://192.168.2.10:3306/test
         username: root
-        password: root
+        password: hadoop
         # 使用c3p0数据源
         type: com.mchange.v2.c3p0.ComboPooledDataSource
         driver-class-name: com.mysql.jdbc.Driver

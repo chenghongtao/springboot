@@ -15,12 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 /**
-* Type: WebSocketServer
-* Description: WebSocketServer,实现服务器客户端平等交流，
-* 		达到服务器可以主动向客户端发生消息
-* @author LYM
-* @date Dec 18, 2018
- */
+* WebSocketServer
+*/
 @ServerEndpoint(value = "/websocket")
 @Component
 public class WebSocketServer {
@@ -57,6 +53,7 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, Session session) {
     	LOGGER.info("来自客户端(" + session.getId() + ")的消息:" + message);
+    	System.out.println("来自客户端(" + session.getId() + ")的消息:" + message);
     	sendMessage("Hello, nice to hear you! There are " + webSocketSet.size() + " users like you in total here!");
     }
  
@@ -79,7 +76,7 @@ public class WebSocketServer {
      */
     public boolean sendMessage(String message) {
         try {
-        	message="123456";
+        	message="123456"+System.currentTimeMillis();
 			this.session.getBasicRemote().sendText(message);
 			return true;
 		} catch (IOException error) {

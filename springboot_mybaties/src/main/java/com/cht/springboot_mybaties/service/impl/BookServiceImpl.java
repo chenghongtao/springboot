@@ -5,14 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.cht.springboot_mybaties.config.WebSocketServer;
 import com.cht.springboot_mybaties.model.Book;
 import com.cht.springboot_mybaties.service.BookService;
 
 @Service("bookService")
 public class BookServiceImpl implements BookService {
 
+	@Autowired
+	private WebSocketServer server;
 
 	@Override
 	public Map<String, Object> commonMethod() {
@@ -59,6 +65,12 @@ public class BookServiceImpl implements BookService {
 		map.put("content",content);
 		
 		return map;
+	}
+
+	@Override
+	@Scheduled(fixedRate = 2000)
+	public void socket() {
+		server.sendMessage(String.valueOf(System.currentTimeMillis()));
 	}
 
 }

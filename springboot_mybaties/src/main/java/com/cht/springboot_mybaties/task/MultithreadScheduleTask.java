@@ -26,8 +26,8 @@ public class MultithreadScheduleTask {
         Thread.sleep(1000 * 10);
     }
 
-    @Async
-    @Scheduled(fixedDelay = 2000)
+    //@Async
+    //@Scheduled(fixedDelay = 2000)
     public void second() {
         System.out.println("第二个定时任务开始 : " +new Date().getTime() + "\r\n线程 : " + Thread.currentThread().getName());
         System.out.println();

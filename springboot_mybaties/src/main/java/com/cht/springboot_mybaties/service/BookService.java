@@ -5,6 +5,8 @@ import java.util.Map;
 public interface BookService {
 	  
 	  Map<String,Object> commonMethod();
+
+	 void socket();
 	
 	
 }

@@ -24,27 +24,29 @@ var ws_status = false;
 function openWebSocket(){
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
-        ws = new WebSocket("ws://localhost:8081/websocket");
+        ws = new WebSocket("ws://192.168.2.105:8080/websocket");
     } else if ('MozWebSocket' in window) {
-        websocket = new MozWebSocket("ws://localhost:8081/websocket");
+        websocket = new MozWebSocket("ws://192.168.2.105:8080/websocket");
     } else {
-        ws = new SockJS("ws://localhost:8081/websocket");
+        ws = new SockJS("ws://192.168.2.105:8080/websocket");
     }
-    ws.onopen = function () {
+    //ws.onopen = function () {
  
-    };
+    //};
 　　//这个事件是接受后端传过来的数据
     ws.onmessage = function (event) {
         //根据业务逻辑解析数据
         console.log("Server:");
         console.log(event);
     };
-    ws.onclose = function (event) {
-		console.log("Connection closed!");
-    };
+    //ws.onclose = function (event) {
+	//	console.log("Connection closed!");
+    //};
     ws.onopen = function (event){
     	ws_status = true;
+		if(ws_status){
     	console.log("Connected!");
+		}
     };
     ws.onerror = function (event){
     	console.log("Connect error!");
@@ -56,6 +58,8 @@ setInterval(function(){
 		openWebSocket(); 
 	}
 }, 2000);
+
+//向服务端发送消息
 $("#send").click(function(){
 	//ws.send("Hello, server, I am browser.");
 	ws.onmessage(event);
