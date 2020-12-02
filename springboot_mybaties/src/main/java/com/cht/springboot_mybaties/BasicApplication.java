@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling  //定时器相关注解
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.cht")
-public class Application 
+public class BasicApplication
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(BasicApplication.class, args);
        
     }
 }
